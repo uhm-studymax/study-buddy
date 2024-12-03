@@ -205,6 +205,18 @@ export async function addSession(studySessionId: number, userId: number) {
   redirect('/mySessions');
 }
 
+export async function leaveSession(studySessionId: number, userId: number) {
+  await prisma.studySession.update({
+    where: { id: studySessionId },
+    data: {
+      users: {
+        disconnect: { id: userId },
+      },
+    },
+  });
+  redirect('/mySessions');
+}
+
 export async function updateSession(studySessionId: number, studySession: Partial<StudySession>) {
   await prisma.studySession.update({
     where: { id: studySessionId },
