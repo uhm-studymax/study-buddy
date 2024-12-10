@@ -228,6 +228,18 @@ export async function addBuddy(buddyId: number, userId: number) {
   redirect('/myBuddies');
 }
 
+export async function removeBuddy(buddyId: number, userId: number) {
+  await prisma.buddy.update({
+    where: { id: buddyId },
+    data: {
+      users: {
+        disconnect: { id: userId },
+      },
+    },
+  });
+  redirect('/myBuddy');
+}
+
 export async function leaveSession(studySessionId: number, userId: number) {
   await prisma.studySession.update({
     where: { id: studySessionId },
