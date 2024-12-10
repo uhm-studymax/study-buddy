@@ -6,8 +6,9 @@ import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 import { Buddy } from '@prisma/client';
 // import SearchBuddies from '../../components/SearchBuddies';
+import { Card } from 'react-bootstrap';
 import BuddyCard from '../../components/BuddyCard';
-import '../../styles/buddies.style.css';
+import '../../styles/studyPlaylist.style.css';
 
 type ExtendedBuddy = Buddy & {
   userDupe: {
@@ -24,7 +25,7 @@ type ExtendedBuddy = Buddy & {
   };
 };
 
-const Buddies = async () => {
+const studyPlaylist = async () => {
   // const [search, setSearch] = useState('');
 
   const session = await getServerSession(authOptions);
@@ -47,15 +48,47 @@ const Buddies = async () => {
   })) as ExtendedBuddy[];
 
   return (
-    <div className="">
-      <h1 className="buddiesPageTitle">
+    <div className="playlist">
+      {/* Page Title */}
+      <h1 className="studyPlaylistTitle">
         <strong>Study Playlist</strong>
       </h1>
-      {/* <SearchBuddies search={search} setSearch={setSearch} /> */}
-      <div className="buddiesListDiv">
-        <BuddyCard buddyList={buddyList} currentUser={currentUser} />
+
+      {/* Playlist Container */}
+      <div className="playlistListDiv">
+        <div className="playlistList">
+          {/* Playlist 1 */}
+          <Card className="playlistCard">
+            <h3>Playlist 1</h3>
+            <input
+              type="text"
+              value="https://spotify/playlist1"
+              readOnly
+            />
+          </Card>
+
+          {/* Playlist 2 */}
+          <Card className="playlistCard">
+            <h3>Playlist 2</h3>
+            <input
+              type="text"
+              value="https://spotify/playlist2"
+              readOnly
+            />
+          </Card>
+
+          {/* Playlist 3 */}
+          <Card className="playlistCard">
+            <h3>Playlist 3</h3>
+            <input
+              type="text"
+              value="https://spotify/playlist3"
+              readOnly
+            />
+          </Card>
+        </div>
       </div>
     </div>
   );
 };
-export default Buddies;
+export default studyPlaylist;

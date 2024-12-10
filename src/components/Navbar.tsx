@@ -50,6 +50,14 @@ const NavBar: React.FC = () => {
                   <Nav.Link id="myBuddies" href="/myBuddies" key="myBuddies" active={pathName === '/myBuddies'}>
                     My Buddies
                   </Nav.Link>,
+                  <Nav.Link
+                    id="studyPlaylist"
+                    href="/studyPlaylist"
+                    key="studyPlaylist"
+                    active={pathName === '/studyPlaylist'}
+                  >
+                    Study Playlist
+                  </Nav.Link>,
                 ]
               : ''}
           </Nav>
